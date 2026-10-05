@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         ContaBanco c1 = new ContaBanco(111, "CF", "Mario");
-        ContaBanco c2 = new ContaBanco(222, "CF", "luigi");
+        ContaBanco c2 = new ContaBanco(222, "CF", "Luigi");
 
         c1.abrirConta();
         c2.abrirConta();
