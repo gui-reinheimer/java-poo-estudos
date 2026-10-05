@@ -99,6 +99,7 @@ public class ContaBanco {
            System.out.println("Dono da conta: " + this.getDono());
            System.out.println("Saldo da conta: " + this.getSaldo());
            System.out.println("Status? " + this.isStatus());
+           System.out.println();
        }
 
 }
