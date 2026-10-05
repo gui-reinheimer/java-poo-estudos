@@ -13,11 +13,6 @@ public class ContaBanco {
            status = false;
        }
 
-       private void setSaldo(float saldo) {
-           if (status) {
-              this.saldo = saldo;
-           }
-       }
 
        public float getSaldo() {
            return saldo;
@@ -28,7 +23,9 @@ public class ContaBanco {
        }
 
        public void fecharConta() {
-           if(saldo == 0) {
+           if(!status){
+               System.out.println("A conta já está fechada.");
+           } else if(saldo == 0) {
                this.status = false;
                System.out.println("Conta Fechada");
            } else {
@@ -37,7 +34,7 @@ public class ContaBanco {
        }
 
        public float depositar(float valor) {
-           if (status) {
+           if (status && valor > 0) {
                saldo += valor;
                System.out.println("Depositado com sucesso!");
            } else {
@@ -47,7 +44,7 @@ public class ContaBanco {
        }
 
        public float sacar(float valor){
-           if (this.status && valor <= this.saldo) {
+           if (this.status && valor > 0 && valor <= this.saldo) {
                saldo -= valor;
                System.out.println("Saque de R$ " + valor + " realizado com sucesso!");
            } else {
@@ -57,7 +54,7 @@ public class ContaBanco {
        }
 
        public float transferir(float valor, ContaBanco conta){
-           if (this.status && conta.status && valor <= this.saldo && valor > 0) {
+           if (this.status && conta.status && valor > 0 &&  valor <= this.saldo) {
                saldo -= valor;
                conta.saldo += valor;
            } else {
@@ -93,10 +90,6 @@ public class ContaBanco {
 
     public boolean isStatus() {
         return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
     }
 
     public void info(){
