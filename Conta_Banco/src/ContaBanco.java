@@ -28,7 +28,12 @@ public class ContaBanco {
        }
 
        public void fecharConta() {
-           this.status = false;
+           if(saldo == 0) {
+               this.status = false;
+               System.out.println("Conta Fechada");
+           } else {
+               System.out.println("Para fechar conta deve sacar todo o valor");
+           }
        }
 
        public float depositar(float valor) {
@@ -47,6 +52,17 @@ public class ContaBanco {
                System.out.println("Saque de R$ " + valor + " realizado com sucesso!");
            } else {
                System.out.println("ERRO ao sacar! Verifique o saldo ou se conta está aberta");
+           }
+           return saldo;
+       }
+
+       public float transferir(float valor, ContaBanco conta){
+           if (this.status && conta.status && valor <= this.saldo && valor > 0) {
+               saldo -= valor;
+               conta.saldo += valor;
+           } else {
+               System.out.println("Impossivel transferir");
+               System.out.println("Verificar se conta existe.\nOu se possui saldo suficiente.");
            }
            return saldo;
        }
