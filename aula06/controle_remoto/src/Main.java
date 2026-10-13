@@ -5,6 +5,5 @@ public class Main {
         c.ligar();
         c.abrirMenu();
         c.fecharMenu();
-
     }
 }
