@@ -1,32 +1,29 @@
 public class Livro implements Publicacao{
     private String titulo;
     private String autor;
-    private int totPaginas;
+    private int totPag;
     private int pagAtual;
     private boolean aberto;
     private Pessoa leitor;
 
-    public String detalhes() {
-        return  "----------------------------- \n" +
-                "Livro " +
-                "titulo = " + titulo +
-                ",\n autor = '" + autor +
-                ",\n totPaginas = " + totPaginas +
-                ",\n pagAtual = " + pagAtual +
-                ",\n aberto = " + aberto +
-                ",\n leitor = " + leitor.getNome() +
-                ", idade = " + leitor.getIdade() +
-                ", Sexo = " + leitor.getSexo() +
-                "\n-----------------------------";
-    }
-
-    public Livro(String titulo, String autor, int totPaginas, Pessoa leitor) {
+    public Livro(String titulo, String autor, int totPag, Pessoa leitor) {
         this.titulo = titulo;
         this.autor = autor;
-        this.totPaginas = totPaginas;
+        this.totPag = totPag;
         this.aberto = false;
         this.leitor = leitor;
         this.pagAtual = 0;
+    }
+
+    public String detalhes() {
+        return "Livro: " + titulo +
+                "\nautor = " + autor +
+                "\ntotPag = " + totPag +
+                "\npagAtual = " + pagAtual +
+                "\naberto = " + aberto +
+                "\nleitor = " + leitor.getNome() +
+                "\nIdade = " + leitor.getIdade() +
+                "\nSexo = " + leitor.getSexo();
     }
 
     public String getTitulo() {
@@ -45,12 +42,12 @@ public class Livro implements Publicacao{
         this.autor = autor;
     }
 
-    public int getTotPaginas() {
-        return totPaginas;
+    public int getTotPag() {
+        return totPag;
     }
 
-    public void setTotPaginas(int totPaginas) {
-        this.totPaginas = totPaginas;
+    public void setTotPag(int totPag) {
+        this.totPag = totPag;
     }
 
     public int getPagAtual() {
@@ -78,31 +75,46 @@ public class Livro implements Publicacao{
     }
 
     @Override
-    public void Abrir() {
+    public void abrir() {
         this.aberto = true;
     }
 
     @Override
-    public void Fechar() {
+    public void fechar() {
         this.aberto = false;
     }
 
+
     @Override
     public void folhear(int p) {
-        if (p > this.totPaginas) {
-            System.out.println("Esse livro vai só ate a pagina " + this.totPaginas);
-        }  else {
+        if (p > this.totPag || p < 0) {
+            System.out.println("Esse livro possui apenas " + totPag + " paginas");
+        } else if (!aberto) {
+            System.out.println("Livro fechado");
+        } else {
             this.pagAtual = p;
         }
     }
 
     @Override
-    public void avancarPag() {
-        this.pagAtual++;
+    public void avanPag() {
+        if (!aberto) {
+            System.out.println("Livro fechado");
+        } else if (pagAtual >= this.totPag) {
+            System.out.println("Chegou ao fim");
+        } else {
+            pagAtual++;
+        }
     }
 
     @Override
     public void voltarPag() {
-        this.pagAtual--;
+        if (!aberto) {
+            System.out.println("Livro fechado");
+        } else if (pagAtual <= 0 ) {
+            System.out.println("Impossivel voltar");
+        } else {
+            pagAtual--;
+        }
     }
 }

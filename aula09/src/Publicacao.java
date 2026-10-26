@@ -1,9 +1,7 @@
 public interface Publicacao {
-        public  void Abrir();
-        public  void Fechar();
-        public  void folhear(int p);
-        public  void avancarPag();
-        public  void voltarPag();
-
+    public void abrir();
+    public void fechar();
+    void folhear(int p);
+    public void avanPag();
+    public void voltarPag();
 }
-

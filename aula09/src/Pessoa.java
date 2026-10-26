@@ -1,13 +1,19 @@
+enum Sexo {
+    M,
+    F
+}
+
+
 public class Pessoa {
     private String nome;
     private int idade;
-    private char sexo;
+    private Sexo sexo;
 
-    public void fazerAniver(){
-        this.idade++;
+    public void fazerAniver() {
+        this.idade = this.idade + 1;
     }
 
-    public Pessoa(String nome, int idade, char sexo) {
+    public Pessoa(String nome, int idade, Sexo sexo) {
         this.nome = nome;
         this.idade = idade;
         this.sexo = sexo;
@@ -29,11 +35,11 @@ public class Pessoa {
         this.idade = idade;
     }
 
-    public char getSexo() {
-        return sexo;
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
     }
 
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
+    public Sexo getSexo() {
+        return sexo;
     }
 }
